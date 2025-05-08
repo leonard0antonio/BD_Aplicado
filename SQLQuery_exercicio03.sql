@@ -1,46 +1,67 @@
---CREATE DATABASE Banco;
---go
---USE Banco;
---ALTER DATABASE BANCO MODIFY NAME = Agenda;
---CREATE TABLE PESSOAL(
---			MATRICULA INTEGER,
---			NOME VARCHAR(50),
---			NASCIMENTO DATE,
---			SEXO CHAR(1),
---			SALARIO MONEY
---			);
+-- Cria o banco de dados "Banco"
+CREATE DATABASE Banco;
+GO
 
---ALTER TABLE PESSOAL ADD OBSERVACAO VARCHAR(200);
---ALTER TABLE PESSOAL ALTER COLUMN OBSERVACAO VARCHAR(150);
---ALTER TABLE PESSOAL DROP COLUMN OBSERVACAO
---DROP TABLE PESSOAL
+-- Usa o banco de dados "Banco"
+USE Banco;
 
---CREATE INDEX in_ClienteAlfa on PESSOAL(Nome)
+-- Renomeia o banco de dados "Banco" para "Agenda"
+ALTER DATABASE BANCO MODIFY NAME = Agenda;
 
-INSERT INTO PESSOAL
-			 (Nome, Nascimento, Sexo)
-VALUES
-			('Miguel', '06-05-2005', 'M')
-select * from Pessoal
+-- Cria a tabela "PESSOAL"
+CREATE TABLE PESSOAL(
+    MATRICULA INTEGER,
+    NOME VARCHAR(50),
+    NASCIMENTO DATE,
+    SEXO CHAR(1),
+    SALARIO MONEY
+);
 
---INSERT INTO PESSOAL
---			 (Nome, Nascimento, Sexo)
---VALUES
---			('Miguel', '06-05-2005', 'M')
---select * from Pessoal
+-- Adiciona a coluna "OBSERVACAO" à tabela "PESSOAL"
+ALTER TABLE PESSOAL ADD OBSERVACAO VARCHAR(200);
 
---INSERT INTO PESSOAL
---			 (Nome, Nascimento, Sexo)
---VALUES
---			('Jose', '06-05-2005', 'M')
-select * from Pessoal
+-- Altera o tamanho da coluna "OBSERVACAO"
+ALTER TABLE PESSOAL ALTER COLUMN OBSERVACAO VARCHAR(150);
 
---INSERT INTO PESSOAL
---			 (Nome, Nascimento, Sexo)
---VALUES
---			('Jair', '06-05-2005', 'M')	
---select * from Pessoal
+-- Remove a coluna "OBSERVACAO"
+ALTER TABLE PESSOAL DROP COLUMN OBSERVACAO;
 
-UPDATE PESSOAL Set Salario = '2000' WHERE SALARIO = null
+-- Exclui a tabela "PESSOAL"
+DROP TABLE PESSOAL;
 
-DELETE FROM PESSOAL WHERE NOME = 'PAGAMENTO'
+-- Cria um índice no campo "Nome" da tabela "PESSOAL"
+CREATE INDEX in_ClienteAlfa ON PESSOAL(Nome);
+
+-- Insere um registro com os dados de Miguel
+INSERT INTO PESSOAL (Nome, Nascimento, Sexo)
+VALUES ('Miguel', '2005-05-06', 'M');
+
+-- Visualiza os dados da tabela "PESSOAL"
+SELECT * FROM PESSOAL;
+
+-- Insere outro registro
+INSERT INTO PESSOAL (Nome, Nascimento, Sexo)
+VALUES ('Miguel', '2005-05-06', 'M');
+
+-- Visualiza os dados novamente
+SELECT * FROM PESSOAL;
+
+-- Insere registro de Jose
+INSERT INTO PESSOAL (Nome, Nascimento, Sexo)
+VALUES ('Jose', '2005-05-06', 'M');
+
+-- Visualiza os dados
+SELECT * FROM PESSOAL;
+
+-- Insere registro de Jair
+INSERT INTO PESSOAL (Nome, Nascimento, Sexo)
+VALUES ('Jair', '2005-05-06', 'M');
+
+-- Visualiza os dados
+SELECT * FROM PESSOAL;
+
+-- Atualiza salário para 2000 onde for NULL (corrigido com IS NULL)
+UPDATE PESSOAL SET Salario = 2000 WHERE SALARIO IS NULL;
+
+-- Deleta os registros com nome 'PAGAMENTO'
+DELETE FROM PESSOAL WHERE NOME = 'PAGAMENTO';
